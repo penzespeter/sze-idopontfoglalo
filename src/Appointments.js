@@ -36,7 +36,7 @@ export default function Appointments({ teachers }) {
    
 
     let eventClick = (info) => {
-        if (info.el.style.backgroundColor != "rgb(140, 140, 140)") {
+        if (info.el.style.backgroundColor !== "rgb(140, 140, 140)") {
             document.getElementById("appointmentTime").innerHTML = info.event.title;
             let modal = new window.bootstrap.Modal(document.getElementById('appointmentModal'));
             modal.show()

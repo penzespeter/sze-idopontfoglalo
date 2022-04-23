@@ -7,7 +7,7 @@ export default function Layout({logout, loggedIn}) {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/"><img src={Icon} width="40px" /></Link>
+                    <Link className="navbar-brand" to="/"><img src={Icon} width="40px" alt="logo"/></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -29,9 +29,9 @@ export default function Layout({logout, loggedIn}) {
                                         </li>
                                         :
                                         <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i className="fa-solid fa-user me-2"></i>Belépett Felhasználó
-                                            </a>
+                                            </span>
                                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a className="dropdown-item" href="/" onClick={logout}>Kilépés</a></li>
                                             </ul>
