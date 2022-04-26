@@ -24,7 +24,7 @@ export default function Appointments({ teachers }) {
             let date = new Date((startTime + i * 60 * 60 * 24 * 7) * 1000);
             let data = { title: date.getHours() + ':00 - ' + (date.getHours() + 1) + ':30', start: date, display: 'block' }
 
-            if (date < new Date()) {
+            if (date < new Date() || Math.floor(Math.random() * 10) < 4) {
                 data.backgroundColor = '#8c8c8c';
                 data.borderColor = '#8c8c8c';
             }
@@ -36,11 +36,24 @@ export default function Appointments({ teachers }) {
    
 
     let eventClick = (info) => {
-        if (info.el.style.backgroundColor !== "rgb(140, 140, 140)") {
-            document.getElementById("appointmentTime").innerHTML = info.event.title;
-            let modal = new window.bootstrap.Modal(document.getElementById('appointmentModal'));
-            modal.show()
+        let num = Math.floor(Math.random() * 15) + 10;
+        
+        if (info.el.style.backgroundColor === "rgb(140, 140, 140)") {
+            document.getElementById("reserveButton").classList.add("disabled");
+            if (info.event.start < Date.now()) {
+                document.getElementById("appointmentBody").innerHTML = "<p>Időpont lejárt</p>";
+            } else {
+                document.getElementById("appointmentBody").innerHTML = "<p>Időpont betelt: " + num + "/" + num + "</p>";
+            }
+
+        } else {
+            document.getElementById("reserveButton").classList.remove("disabled");
+            document.getElementById("appointmentBody").innerHTML = "<p>Elérhető helyek: " + (Math.floor(Math.random() * num) + "/" + (num + 1)) + "</p>";
         }
+
+        document.getElementById("appointmentTime").innerHTML = info.event.title;
+        let modal = new window.bootstrap.Modal(document.getElementById('appointmentModal'));
+        modal.show()
     }
 
     let HandleReserve = () => {
@@ -57,13 +70,17 @@ export default function Appointments({ teachers }) {
                             <h5 className="modal-title" id="appointmentModalLabel">{teacher.name} Konzultáció <span id="appointmentTime"></span></h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div className="modal-body" id="appointmentBody">
+
+                        </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                            <button type="button" className="btn btn-primary"  data-bs-dismiss="modal" onClick={HandleReserve}>Foglalás</button>
+                            <button type="button" className="btn btn-primary" id="reserveButton"  data-bs-dismiss="modal" onClick={HandleReserve}>Foglalás</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className="card shadow border-0 w-100">
                 <div className="card-body">
                     <h1 className="card-title">{teacher.name}</h1>
