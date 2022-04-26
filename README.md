@@ -1,3 +1,3 @@
 # Sze Rendszerfejlesztés időpontfoglaló demo
 
-[Vercel](https://sze-idopontfoglalo-epy528keq-penzespeter.vercel.app)
+[Vercel](https://sze-idopontfoglalo.vercel.app)
