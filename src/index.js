@@ -21,7 +21,11 @@ export default function App() {
     let token = localStorage.getItem("token");
     
     if (token) {
-      token = JSON.parse(token);
+      try {
+        token = JSON.parse(token);
+      } catch (e) {
+        token = null;
+      }
     }
 
     return token;
