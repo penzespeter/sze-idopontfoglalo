@@ -7,6 +7,7 @@ import Home from './Home';
 import Layout from './Layout';
 import Login from './Login';
 import "./App.css";
+import Register from './Register';
 
 export default function App() {
 
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="calendar" element={token ? <Calendar /> : <Navigate replace to="/login" />} />
 
           <Route path="login" element={!token ? <Login setToken={storeToken} /> : <Navigate replace to="/" />} />
+          <Route path="register" element={!token ? <Register setToken={storeToken} /> : <Navigate replace to="/" />} />
           <Route path="*" element={<Navigate replace to="/login" />} />
         </Route>
       </Routes>
