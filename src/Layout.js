@@ -1,7 +1,7 @@
 import { Outlet, Link, NavLink } from "react-router-dom";
 import Icon from './calendar_icon.png';
 
-export default function Layout({logout, loggedIn}) {
+export default function Layout({logout, token}) {
 
     return (
         <>
@@ -23,14 +23,15 @@ export default function Layout({logout, loggedIn}) {
                         <div className="d-flex">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 {
-                                    !loggedIn ?
+                                    !token ?
                                         <li className="nav-item">
                                             <Link className="nav-link" to="/login">Belépés</Link>
                                         </li>
                                         :
                                         <li className="nav-item dropdown">
                                             <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i className="fa-solid fa-user me-2"></i>Belépett Felhasználó
+                                                <i className="fa-solid fa-user me-2"></i>
+                                                {token.teacher ? "Oktató" : "Hallgató"}
                                             </span>
                                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a className="dropdown-item" href="/" onClick={logout}>Kilépés</a></li>

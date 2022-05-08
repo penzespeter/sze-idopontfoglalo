@@ -1,8 +1,17 @@
+import { useState } from "react";
+
 export default function Login({setToken}) {
 
-    const handleLogin = () => {
-        setToken("asd");
+    const [email, setEmail] = useState("");
+
+    const emailChange = (e) => {
+        setEmail(e.target.value);
     }
+
+    const handleLogin = () => {
+        setToken({token:"asd", teacher: email === "oktato@sze.hu"});
+    }
+
 
     return (
         <div className="row w-100 justify-content-center">
@@ -13,7 +22,7 @@ export default function Login({setToken}) {
                         <form className="mt-3" onSubmit={handleLogin}>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email cím</label>
-                                <input type="email" className="form-control" id="email" placeholder="pelda@email.com" />
+                                <input type="email" className="form-control" id="email" placeholder="pelda@email.com" value={email} onChange={emailChange} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Jelszó</label>

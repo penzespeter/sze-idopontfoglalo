@@ -1,22 +1,22 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid'
 
-export default function Calendar() {
+export default function Calendar({teachers}) {
     // 2 random kezdő idópont, február első hetéből
     let startTimestamps = [1644246000, 1644336000, 1644420600, 1644516000, 1644573600];
     let appointments = [];
 
     for (let i = 0; i < 5; i++) {
+        let teacher = teachers[Math.floor(Math.random() * teachers.length)];
+        let date = new Date(( startTimestamps[Math.floor(Math.random() * startTimestamps.length)] + (12 + Math.floor(Math.random() * 6)) * 60 * 60 * 24 * 7) * 1000);
+        let data = { title: date.getHours() + ':00 - ' + (date.getHours() + 1) + ':30 / ' + teacher.name, start: date, display: 'block' }
 
-        let date = new Date(( startTimestamps[Math.floor(Math.random() * startTimestamps.length)] + (Math.floor(Math.random() * 14)) * 60 * 60 * 24 * 7) * 1000);
-            let data = { title: date.getHours() + ':00 - ' + (date.getHours() + 1) + ':30', start: date, display: 'block' }
+        if (date < new Date()) {
+            data.backgroundColor = '#8c8c8c';
+            data.borderColor = '#8c8c8c';
+        }
 
-            if (date < new Date()) {
-                data.backgroundColor = '#8c8c8c';
-                data.borderColor = '#8c8c8c';
-            }
-
-            appointments.push(data)
+        appointments.push(data)
     }
 
     return (

@@ -19,18 +19,16 @@ export default function Appointments({ teachers }) {
 
     let appointments = [];
 
-    for (let i = 0; i < 14; i++) {
-        appointmerStarts.forEach(startTime => {
-            let date = new Date((startTime + i * 60 * 60 * 24 * 7) * 1000);
-            let data = { title: date.getHours() + ':00 - ' + (date.getHours() + 1) + ':30', start: date, display: 'block' }
+    for (let i = 0; i < teacher.appointments.length; i++) {
+        let date = teacher.appointments[i].start;
+        let data = { title: date.getHours() + ':00 - ' + (date.getHours() + 1) + ':30', start: date, display: 'block' }
 
-            if (date < new Date() || Math.floor(Math.random() * 10) < 4) {
-                data.backgroundColor = '#8c8c8c';
-                data.borderColor = '#8c8c8c';
-            }
+        if (date < new Date() || Math.floor(Math.random() * 10) < 4) {
+            data.backgroundColor = '#8c8c8c';
+            data.borderColor = '#8c8c8c';
+        }
 
-            appointments.push(data)
-        })
+        appointments.push(data)
     }
 
    
